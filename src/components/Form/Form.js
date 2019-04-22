@@ -38,7 +38,10 @@ const Form = () => {
     setPropsFields(propsFields => ({
       ...propsFields,
       errors: { ...clearErrors },
-      values: { ...propsFields.values, [name]: value }
+      values: { 
+                ...propsFields.values, 
+                [name]: value 
+              }
     }));
   };
 
@@ -52,9 +55,7 @@ const Form = () => {
     if (!values.firstname) {
       hasError = true;
       firstname = 'Нужно указать имя';
-    }
-
-    if (values.firstname && values.firstname !== 'james') {
+    } else if (values.firstname && values.firstname !== 'james') {
       hasError = true;
       firstname = 'Имя указано не верно';
     }
@@ -62,9 +63,7 @@ const Form = () => {
     if (!values.lastname) {
       hasError = true;
       lastname = 'Нужно указать фамилию';
-    }
-
-    if (values.lastname && values.lastname !== 'bond') {
+    } else if (values.lastname && values.lastname !== 'bond') {
       hasError = true;
       lastname = 'Фамилия указана неверно';
     }
@@ -72,16 +71,18 @@ const Form = () => {
     if (!values.password) {
       hasError = true;
       password = 'Нужно указать пароль';
-    }
-
-    if (values.password && values.password !== '007') {
+    } else if (values.password && values.password !== '007') {
       hasError = true;
       password = 'Пароль указан неверно';
     }
 
     setPropsFields(fieldsProps => ({
       ...fieldsProps,
-      errors: { firstname: firstname, lastname: lastname, password: password }
+      errors: { 
+                firstname: firstname, 
+                lastname: lastname, 
+                password: password 
+              }
     }));
 
     return hasError;
