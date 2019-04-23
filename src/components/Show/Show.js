@@ -35,8 +35,7 @@ class Show extends PureComponent {
             <img className="show-image" src={image.medium} alt={name} />
             <h2 className="show-label t-show-name">{name}</h2>
             <p className="show-text t-show-genre">
-              <b>Жанр: </b>
-              {genres.join(', ')}
+              <b>Жанр: </b> {genres.join(', ')}
             </p>
             <p
               className="show-text t-show-summary"
@@ -44,7 +43,7 @@ class Show extends PureComponent {
             />
           </Fragment>
         ) : (
-          <p className="show-inforation t-show-info">Шоу не выбрано</p>
+          <p className="show-information t-show-info">Шоу не выбрано</p>
         )}
       </div>
     );
