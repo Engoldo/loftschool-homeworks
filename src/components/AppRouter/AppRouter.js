@@ -27,6 +27,24 @@ class AppRouter extends Component {
     title: 'Home'
   };
 
+  renderMenu = props => {
+    const { label, endpoint, classname } = props;
+
+    return (
+      <li className={style.navElement}>
+        <NavLink
+          to={endpoint}
+          exact
+          activeClassName="active"
+          className={classNames(style.link, classname)}
+          onClick={this.setActivePage}
+        >
+          {label}
+        </NavLink>
+      </li>
+    );
+  };
+
   setActivePage = e => {
     this.setState({
       title: e.target.innerHTML
@@ -35,45 +53,18 @@ class AppRouter extends Component {
 
   render() {
     const { title } = this.state;
+    const listLink =  [
+      { label: 'Home', endpoint: 'app', classname: 't-link-home' },
+      { label: 'Inbox', endpoint: '/app/inbox', classname: 't-link-inbox' },
+      { label: 'Outbox', endpoint: '/app/outbox', classname: 't-link-outbox'}
+    ].map(row => this.renderMenu(row));
 
     return (
       <div className={style.wrapper}>
         <div className={style.container}>
           <nav className={style.nav}>
             <ul className={classNames(style.navList, 't-nav-list')}>
-              <li className={style.navElement}>
-                <NavLink
-                  to="/app"
-                  exact
-                  activeClassName="active"
-                  className={classNames(style.link, 't-link-home')}
-                  onClick={this.setActivePage}
-                >
-                  Home
-                </NavLink>
-              </li>
-              <li className={style.navElement}>
-                <NavLink
-                  to="/app/inbox"
-                  exact
-                  activeClassName="active"
-                  className={classNames(style.link, 't-link-inbox')}
-                  onClick={this.setActivePage}
-                >
-                  Inbox
-                </NavLink>
-              </li>
-              <li className={style.navElement}>
-                <NavLink
-                  to="/app/outbox"
-                  exact
-                  activeClassName="active"
-                  className={classNames(style.link, 't-link-outbox')}
-                  onClick={this.setActivePage}
-                >
-                  Outbox
-                </NavLink>
-              </li>
+              {listLink}
             </ul>
           </nav>
           <div className={style.content}>
