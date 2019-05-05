@@ -11,7 +11,7 @@ const withLocalstorage = (
 
     saveData = value => {
       save(localStorageKey, value);
-      this.forceUpdate();
+      this.setState({ savedData: value });
     };
 
     render() {
